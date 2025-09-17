@@ -139,6 +139,15 @@ local ScriptButton4 = Tabs.Scripts:AddButton({
 
     end
 })
+local ScriptButton4 = Tabs.Scripts:AddButton({
+    Title = "Dress to Impress",
+    Description = "(KEYLESS + TROLLS)",
+    Callback = function()
+        pcall(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/hellohellohell012321/DTI-GUI-V2/main/dti_gui_v2.lua",true))()
+end)
+    end
+})
 
 Tabs.Recommended:AddParagraph({
     Title = "Recommended Games:",
