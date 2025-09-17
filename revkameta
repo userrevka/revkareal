@@ -1,0 +1,196 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Revka's girls " .. Fluent.Version,
+    SubTitle = "by revka the warrior!",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+-- Tabs
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "clapperboard" }),
+    Scripts = Window:AddTab({ Title = "Scripts", Icon = "laugh" }),
+	Recommended = Window:AddTab({ Title = "Recommended Games", Icon = "gamepad-2" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+local Options = Fluent.Options
+
+-- Greeting
+local hour = os.date("*t").hour
+local greeting = "Hello"
+if hour >= 5 and hour < 12 then
+    greeting = "Good Morning"
+elseif hour >= 12 and hour < 18 then
+    greeting = "Good Afternoon"
+elseif hour >= 18 and hour < 22 then
+    greeting = "Good Evening"
+else
+    greeting = "Good Night"
+end
+
+Tabs.Main:AddParagraph({
+    Title = greeting .. ", " .. player.Name .. "!",
+    Content = "Welcome to Revka's Girls Hub (בנות רבקה הקדושות יימח שמיך) 👋"
+})
+
+-- Profile Picture
+local thumbType = Enum.ThumbnailType.HeadShot
+local thumbSize = Enum.ThumbnailSize.Size420x420
+local content, isReady = Players:GetUserThumbnailAsync(player.UserId, thumbType, thumbSize)
+
+local profileFrame = Instance.new("Frame")
+profileFrame.Size = UDim2.new(0, 100, 0, 100)
+profileFrame.BackgroundTransparency = 1
+profileFrame.Parent = Tabs.Main.Content
+
+local profileImage = Instance.new("ImageLabel")
+profileImage.Size = UDim2.new(1, 0, 1, 0)
+profileImage.Position = UDim2.new(0, 0, 0, 0)
+profileImage.BackgroundTransparency = 1
+profileImage.Image = content
+profileImage.Parent = profileFrame
+
+-- WalkSpeed
+local WalkSpeedSlider = Tabs.Main:AddSlider("WalkSpeed", {
+    Title = "Set Walkspeed",
+    Default = 16,
+    Min = 0,
+    Max = 200,
+    Rounding = 1
+})
+
+local ToggleWalkSpeed = Tabs.Main:AddToggle("ToggleWalkSpeed", {Title = "Toggle Walkspeed", Default = false})
+
+WalkSpeedSlider:OnChanged(function(Value)
+    if ToggleWalkSpeed.Value then
+        player.Character.Humanoid.WalkSpeed = Value
+    end
+end)
+
+ToggleWalkSpeed:OnChanged(function(Value)
+    if Value then
+        player.Character.Humanoid.WalkSpeed = WalkSpeedSlider.Value
+    else
+        player.Character.Humanoid.WalkSpeed = 16
+    end
+end)
+
+-- JumpPower
+local JumpPowerSlider = Tabs.Main:AddSlider("JumpPower", {
+    Title = "Set JumpPower",
+    Default = 50,
+    Min = 0,
+    Max = 200,
+    Rounding = 1
+})
+
+local ToggleJumpPower = Tabs.Main:AddToggle("ToggleJumpPower", {Title = "Toggle JumpPower", Default = false})
+
+JumpPowerSlider:OnChanged(function(Value)
+    if ToggleJumpPower.Value then
+        player.Character.Humanoid.JumpPower = Value
+    end
+end)
+
+ToggleJumpPower:OnChanged(function(Value)
+    if Value then
+        player.Character.Humanoid.JumpPower = JumpPowerSlider.Value
+    else
+        player.Character.Humanoid.JumpPower = 50
+    end
+end)
+
+local ScriptButton1 = Tabs.Scripts:AddButton({
+    Title = "Ink Game - KEY IS ink LAWSHUB game",
+    Description = "tip: fling them all, make them suffer (ragebait)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hehehe9028/LAWSHUB-ink-game/refs/heads/main/LAWSHUB%20ink%20game"))()
+    end
+})
+local ScriptButton2 = Tabs.Scripts:AddButton({
+    Title = "Volleyball Legends NO KEY",
+    Description = "enjoy",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/scriptshubzeck/Zeckhubv1/refs/heads/main/zeckhub"))()
+    end
+})
+local ScriptButton3 = Tabs.Scripts:AddButton({
+    Title = "Aircraft Carrier (TROLLS)",
+    Description = "enjoy",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/2FCQ0zFu"))()
+    end
+})
+
+Tabs.Recommended:AddParagraph({
+    Title = "Recommended Games:",
+    Content = ""
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Roblox Talent Show",
+    Content = "ITS FUN BUT DO IT WITH SCRIPTS"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Rope Swing Obby",
+    Content = "relaxing"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Fling to Climb",
+    Content = "you should try!"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Doodle Obby",
+    Content = "timekilling"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Clip it",
+    Content = "Like Tiktok but in Roblox"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Cake Off!",
+    Content = "Like DTI but with cakes"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Pressure Wash Simulator 2",
+    Content = "timekilling"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "Obby But You're a Parkour Master",
+    Content = "timekilling"
+})
+Tabs.Recommended:AddParagraph({
+    Title = "ONE BLOCK",
+    Content = "timekilling"
+})
+
+
+-- Addons
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+Window:SelectTab(1)
+
+Fluent:Notify({
+    Title = "Fluent",
+    Content = "The script has been loaded.",
+    Duration = 8
+})
+
+-- Auto-load config
+SaveManager:LoadAutoloadConfig()
