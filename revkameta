@@ -131,6 +131,14 @@ local ScriptButton3 = Tabs.Scripts:AddButton({
         loadstring(game:HttpGet("https://pastebin.com/raw/2FCQ0zFu"))()
     end
 })
+local ScriptButton4 = Tabs.Scripts:AddButton({
+    Title = " Restaurant Tycoon 3",
+    Description = "OP AHHHHHHH (NO KEY)",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/samuraa1/Samuraa1-Hub/refs/heads/main/RT3.lua'))()
+
+    end
+})
 
 Tabs.Recommended:AddParagraph({
     Title = "Recommended Games:",
